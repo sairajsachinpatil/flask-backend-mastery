@@ -1,0 +1,375 @@
+{% extends "base.html" %}
+
+{% block title %}Home | Sairaj Sachin Patil{% endblock %}
+
+{% block content %}
+
+<!-- =====================================================
+     HERO SECTION
+===================================================== -->
+
+<section class="hero" id="home">
+
+    <!-- LEFT SIDE - BLACK -->
+
+    <div class="hero-left">
+
+        <div class="image-container">
+
+            <img
+                src="{{ url_for('static', filename='images/profile.png') }}"
+                alt="Sairaj Sachin Patil"
+            >
+
+        </div>
+
+    </div>
+
+
+    <!-- DIAGONAL SLASH -->
+
+    <div class="slash"></div>
+
+
+    <!-- RIGHT SIDE - WHITE -->
+
+    <div class="hero-right">
+
+        <div class="hero-content">
+
+            <p class="hello">
+                Hello, I am
+            </p>
+
+            <h1>
+                Sairaj<br>
+                Sachin Patil
+            </h1>
+
+            <p class="hero-description">
+                A passionate software developer focused on building
+                practical, scalable and user-friendly applications.
+                I enjoy turning ideas into real-world projects.
+            </p>
+
+
+            <!-- SOCIAL ICONS -->
+
+            <div class="social-links">
+
+                <a href="https://www.linkedin.com/sairajsachinpatil" target="_blank" 
+                        rel="noopener noreferrer">
+                    <i class="fa-brands fa-linkedin-in"></i>
+                </a>
+
+                <a href="https://github.com/sairajsachinpatil" target="_blank" 
+                        rel="noopener noreferrer">
+                    <i class="fa-brands fa-github"></i>
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     ABOUT SECTION
+===================================================== -->
+
+<section class="about-section" id="about">
+
+    <div class="section-container">
+
+        <p class="section-label">
+            01 / ABOUT
+        </p>
+
+        <h2>
+            About Me
+        </h2>
+
+        <div class="about-box">
+
+            <p>
+                I am a software developer who enjoys learning by building
+                projects. My interests include backend development,
+                web applications, problem solving and software engineering.
+            </p>
+
+            <p>
+                I believe in understanding how things work rather than
+                simply using them. Currently, I am continuously improving
+                my development skills by working on real-world projects
+                and strengthening my programming fundamentals.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     PROJECT CTA SECTION
+===================================================== -->
+
+<section class="projects-cta">
+
+    <div class="section-container">
+
+        <p class="section-label">
+            02 / WORK
+        </p>
+
+        <h2>
+            Things I've Built
+        </h2>
+
+        <p class="cta-description">
+            Explore my projects, experiments and development work.
+        </p>
+
+        <a
+            href="{{ url_for('projects') }}"
+            class="main-button"
+        >
+            Visit Projects
+            <i class="fa-solid fa-arrow-right"></i>
+        </a>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     RESUME SECTION
+===================================================== -->
+
+<section class="resume-section">
+
+    <div class="section-container">
+
+        <p class="section-label">
+            03 / RESUME
+        </p>
+
+        <h2>
+            Want to know more?
+        </h2>
+
+        <p class="cta-description">
+            Download my resume to learn more about my skills,
+            experience and education.
+        </p>
+
+        <a
+            href="{{ url_for('static', filename='resume/Sairaj_Sachin_Patil_Resume.pdf') }}"
+            class="main-button"
+            download
+        >
+            Download Resume
+            <i class="fa-solid fa-download"></i>
+        </a>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     FLASH MESSAGE AFTER SUCCEFULL CONTACT
+===================================================== -->
+
+
+{% with messages = get_flashed_messages(with_categories=true) %}
+
+    {% if messages %}
+
+        {% for category, message in messages %}
+
+            <div class="flash-message {{ category }}">
+                {{ message }}
+            </div>
+
+        {% endfor %}
+
+    {% endif %}
+
+{% endwith %}
+<!-- =====================================================
+     CONTACT SECTION
+===================================================== -->
+
+<section class="contact-section" id="contact">
+
+    <div class="section-container">
+
+        <p class="section-label">
+            04 / CONTACT
+        </p>
+
+        <h2>
+            Let's Talk
+        </h2>
+
+        <p class="contact-description">
+            Have a project, opportunity or simply want to connect?
+            Send me a message.
+        </p>
+
+
+        <form
+            class="contact-form"
+            action="{{ url_for('contact') }}"
+            method="POST"
+            id="contactForm"
+        >
+
+            <div class="form-row">
+
+                <div class="form-group">
+
+                    <label for="name">
+                        Name
+                    </label>
+
+                    <input
+                        type="text"
+                        id="name"
+                        name="name"
+                        placeholder="Your name"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="email">
+                        Email
+                    </label>
+
+                    <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        placeholder="your@email.com"
+                        required
+                    >
+
+                </div>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="subject">
+                    Subject
+                </label>
+
+                <input
+                    type="text"
+                    id="subject"
+                    name="subject"
+                    placeholder="What is this regarding?"
+                    required
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="message">
+                    Message
+                </label>
+
+                <textarea
+                    id="message"
+                    name="message"
+                    rows="7"
+                    placeholder="Write your message..."
+                    required
+                ></textarea>
+
+            </div>
+
+
+            <button
+                type="submit"
+                class="submit-button"
+                id="submitButton"
+            >
+                <span id="buttonText">Send Message</span>
+
+                <i
+                    class="fa-solid fa-paper-plane"
+                    id="sendIcon"
+                ></i>
+
+                <span
+                    class="loader"
+                    id="loader"
+                ></span>
+            </button>
+
+        </form>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     FOOTER
+===================================================== -->
+
+<footer class="footer">
+
+    <p>
+        © 2026 Sairaj Sachin Patil. All rights reserved.
+    </p>
+
+</footer>
+
+
+
+
+<script>
+    const contactForm = document.getElementById("contactForm");
+    const submitButton = document.getElementById("submitButton");
+    const buttonText = document.getElementById("buttonText");
+    const sendIcon = document.getElementById("sendIcon");
+    const loader = document.getElementById("loader");
+
+    contactForm.addEventListener("submit", function () {
+
+        // Disable button to prevent multiple submissions
+        submitButton.disabled = true;
+
+        // Change button text
+        buttonText.textContent = "Sending...";
+
+        // Hide send icon
+        sendIcon.style.display = "none";
+
+        // Show loading spinner
+        loader.style.display = "inline-block";
+
+    });
+</script>
+
+
+{% endblock %}
